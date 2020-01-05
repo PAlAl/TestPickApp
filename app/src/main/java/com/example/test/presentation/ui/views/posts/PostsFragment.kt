@@ -2,7 +2,6 @@ package com.example.test.presentation.ui.views.posts
 
 import android.os.Bundle
 import android.view.*
-import androidx.navigation.fragment.findNavController
 import com.example.test.R
 import com.example.test.presentation.mvp.presenters.posts.IPostsView
 import com.example.test.presentation.mvp.presenters.posts.PostsPresenter
@@ -20,6 +19,7 @@ class PostsFragment : AppToolbarFragment(), IPostsView {
     lateinit var presenter: PostsPresenter
 
     private lateinit var adapter: PostsAdapter
+    private var isNeedClearSorting: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         setHasOptionsMenu(true)
@@ -37,7 +37,41 @@ class PostsFragment : AppToolbarFragment(), IPostsView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.posts_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.sort_by_date -> {
+                if (!item.isChecked) {
+                    item.isChecked = true
+                    presenter.onSortByDateClick()
+                }
+                true
+            }
+            R.id.sort_by_rank -> {
+                if (!item.isChecked) {
+                    item.isChecked = true
+                    presenter.onSortByRankClick()
+                }
+                true
+            }
+            R.id.sort_clear -> {
+                isNeedClearSorting = true
+                presenter.onSortClearClick()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        if (isNeedClearSorting) {
+            menu.findItem(R.id.sort_cleared).isChecked = true
+            isNeedClearSorting = false
+        }
+        super.onPrepareOptionsMenu(menu)
     }
 
     override fun showBlockingProgress(isShow: Boolean) {

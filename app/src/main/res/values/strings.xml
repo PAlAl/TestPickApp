@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Test Pikabu</string>
-
     <string name="posts_app_bar_title">Посты</string>
     <string name="post_detail_app_bar_title">Детали</string>
 
     <string name="posts_empty_title">Скоро здесь появятся посты</string>
+    <string name="posts_menu_sort_by_date_title">по дате</string>
+    <string name="posts_menu_sort_by_rank_title">по рейтингу</string>
+    <string name="posts_menu_sort_clear_title">сбросить</string>
 
 </resources>

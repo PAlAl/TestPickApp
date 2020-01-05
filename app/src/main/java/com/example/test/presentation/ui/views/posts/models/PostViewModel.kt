@@ -1,4 +1,6 @@
 package com.example.test.presentation.ui.views.posts.models
 
-class PostViewModel(val id: Int, val date: String, val title: String, val text: String, val likesCount: Int) {
+import org.joda.time.DateTime
+
+class PostViewModel(val id: Int, val date: DateTime, val title: String, val text: String, val likesCount: Int, val defaultPosition: Int) {
 }

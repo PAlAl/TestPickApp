@@ -1,4 +1,4 @@
-package com.example.test.domain.global.models
+package com.example.test.domain.global.models.posts
 
 import org.joda.time.DateTime
 

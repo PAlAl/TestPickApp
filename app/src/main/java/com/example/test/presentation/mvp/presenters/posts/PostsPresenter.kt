@@ -15,6 +15,8 @@ class PostsPresenter : BasePresenter<IPostsView>() {
     @Inject
     lateinit var interactor: PostsInteractor
 
+    private val postsModels: ArrayList<PostViewModel> = arrayListOf()
+
     init {
         TestPikabuApplication.instance.getAppComponent().inject(this)
         loadPosts()
@@ -29,10 +31,31 @@ class PostsPresenter : BasePresenter<IPostsView>() {
                     viewState.showBlockingProgress(false)
                 }
                 .subscribeDispose({
-                    viewState.setPosts(it.map { PostViewModel(it.id, it.date.toString(DateFormats.longDateTimeFormat), it.title, it.previewText, it.likesCount) })
+                    postsModels.clear()
+                    postsModels.addAll(it.mapIndexed { index, post -> PostViewModel(post.id, post.date, post.title, post.previewText, post.likesCount, index) })
+                    render()
                 }, {
                     Log.e("Error", "in PostsPresenter at getPosts ${it.message}")
                 })
+    }
+
+    private fun render() {
+        viewState.setPosts(postsModels)
+    }
+
+    fun onSortByRankClick() {
+        postsModels.sortBy { it.likesCount }
+        render()
+    }
+
+    fun onSortByDateClick() {
+        postsModels.sortByDescending { it.date }
+        render()
+    }
+
+    fun onSortClearClick() {
+        postsModels.sortBy { it.defaultPosition }
+        render()
     }
 
     val onItemClick: (postId: Int) -> Unit = {
