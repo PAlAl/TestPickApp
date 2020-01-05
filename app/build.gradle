@@ -14,7 +14,11 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "SERVER_URL", '"http://cs.pikabu.ru/"'
+        }
         release {
+            buildConfigField "String", "SERVER_URL", '"http://cs.pikabu.ru/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -32,7 +36,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.1.0'
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -71,4 +75,8 @@ dependencies {
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+
+    //chuck
+    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
+    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
 }

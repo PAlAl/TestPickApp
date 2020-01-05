@@ -3,7 +3,7 @@ package com.example.test.presentation.ui.views.posts
 import android.os.Bundle
 import android.view.*
 import com.example.test.R
-import com.example.test.presentation.ui.views.AppToolbarFragment
+import com.example.test.presentation.ui.views.global.AppToolbarFragment
 
 class PostDetailFragment : AppToolbarFragment() {
     override val layoutRes: Int = R.layout.fragment_post_detail

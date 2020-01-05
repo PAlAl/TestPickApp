@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.test.R
 import com.example.test.presentation.ui.global.toolbar.AppToolbarConfig
+import com.example.test.presentation.ui.views.global.AppToolbarFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), AppToolbarFragment.OnAppToolbarConfigChangeListener {
