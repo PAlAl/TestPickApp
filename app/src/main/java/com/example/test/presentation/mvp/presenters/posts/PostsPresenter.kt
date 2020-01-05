@@ -4,6 +4,8 @@ import android.util.Log
 import com.example.test.TestPikabuApplication
 import com.example.test.domain.interactors.posts.PostsInteractor
 import com.example.test.presentation.mvp.global.BasePresenter
+import com.example.test.presentation.mvp.global.DateFormats
+import com.example.test.presentation.ui.views.posts.models.PostViewModel
 import moxy.InjectViewState
 import javax.inject.Inject
 
@@ -15,9 +17,10 @@ class PostsPresenter : BasePresenter<IPostsView>() {
 
     init {
         TestPikabuApplication.instance.getAppComponent().inject(this)
+        loadPosts()
     }
 
-    fun onCl() {
+    private fun loadPosts() {
         interactor.getPosts()
                 .doOnSubscribe {
                     viewState.showBlockingProgress(true)
@@ -26,9 +29,13 @@ class PostsPresenter : BasePresenter<IPostsView>() {
                     viewState.showBlockingProgress(false)
                 }
                 .subscribeDispose({
-                    val list = it
+                    viewState.setPosts(it.map { PostViewModel(it.id, it.date.toString(DateFormats.longDateTimeFormat), it.title, it.previewText, it.likesCount) })
                 }, {
                     Log.e("Error", "in PostsPresenter at getPosts ${it.message}")
                 })
+    }
+
+    val onItemClick: (postId: Int) -> Unit = {
+
     }
 }

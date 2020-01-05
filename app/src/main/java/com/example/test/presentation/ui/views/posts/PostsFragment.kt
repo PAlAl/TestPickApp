@@ -7,6 +7,8 @@ import com.example.test.R
 import com.example.test.presentation.mvp.presenters.posts.IPostsView
 import com.example.test.presentation.mvp.presenters.posts.PostsPresenter
 import com.example.test.presentation.ui.views.global.AppToolbarFragment
+import com.example.test.presentation.ui.views.posts.adapters.PostsAdapter
+import com.example.test.presentation.ui.views.posts.models.PostViewModel
 import kotlinx.android.synthetic.main.fragment_posts.*
 import moxy.presenter.InjectPresenter
 
@@ -17,6 +19,8 @@ class PostsFragment : AppToolbarFragment(), IPostsView {
     @InjectPresenter
     lateinit var presenter: PostsPresenter
 
+    private lateinit var adapter: PostsAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         setHasOptionsMenu(true)
 
@@ -26,10 +30,10 @@ class PostsFragment : AppToolbarFragment(), IPostsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lists.setOnClickListener {
-            val action = PostsFragmentDirections.actionPostsFragmentToPostDetailFragment(1)
-            findNavController().navigate(action)
-        }
+        adapter = PostsAdapter(arrayListOf(), presenter)
+        adapter.setHasStableIds(true)
+        posts_recycler_view.adapter = adapter
+        posts_recycler_view.clipToPadding = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -38,5 +42,17 @@ class PostsFragment : AppToolbarFragment(), IPostsView {
 
     override fun showBlockingProgress(isShow: Boolean) {
         showProgressDialog(isShow)
+    }
+
+    override fun setPosts(posts: List<PostViewModel>) {
+        if (posts.isEmpty()) {
+            posts_recycler_view.visibility = View.GONE
+            posts_empty_title.visibility = View.VISIBLE
+        } else {
+            posts_empty_title.visibility = View.GONE
+            posts_recycler_view.visibility = View.VISIBLE
+            adapter.items = posts
+            adapter.notifyDataSetChanged()
+        }
     }
 }
