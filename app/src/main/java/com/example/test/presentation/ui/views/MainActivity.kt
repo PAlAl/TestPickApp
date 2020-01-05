@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.test.R
+import com.example.test.presentation.ui.global.toolbar.AppToolbarConfig
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), AppToolbarFragment.OnAppToolbarTitleChangeListener {
+class MainActivity : AppCompatActivity(), AppToolbarFragment.OnAppToolbarConfigChangeListener {
 
     private lateinit var navigationController: NavController
 
@@ -18,7 +19,8 @@ class MainActivity : AppCompatActivity(), AppToolbarFragment.OnAppToolbarTitleCh
         navigationController = Navigation.findNavController(this, R.id.nav_host_fragment)
     }
 
-    override fun onAppToolbarTitleChange(title: String) {
-        supportActionBar?.title = title
+    override fun onAppToolbarTitleChange(config: AppToolbarConfig) {
+        supportActionBar?.title = config.title
+        supportActionBar?.setDisplayHomeAsUpEnabled(config.isHomeAsUpEnabled)
     }
 }

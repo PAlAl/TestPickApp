@@ -3,6 +3,6 @@
 
     <string name="posts_app_bar_title">Посты</string>
 
-    <string name="post_detail_app_bar_title">Пост</string>
+    <string name="post_detail_app_bar_title">Детали</string>
 
 </resources>

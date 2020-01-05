@@ -2,14 +2,13 @@ package com.example.test.presentation.ui.views.posts
 
 import android.os.Bundle
 import android.view.*
-import androidx.navigation.fragment.findNavController
 import com.example.test.R
 import com.example.test.presentation.ui.views.AppToolbarFragment
-import kotlinx.android.synthetic.main.fragment_posts.*
 
-class PostsFragment : AppToolbarFragment() {
-    override val layoutRes: Int = R.layout.fragment_posts
-    override val appToolbarTitleId: Int = R.string.posts_app_bar_title
+class PostDetailFragment : AppToolbarFragment() {
+    override val layoutRes: Int = R.layout.fragment_post_detail
+    override val appToolbarTitleId: Int = R.string.post_detail_app_bar_title
+    override val isAppToolbarHomeAsUpEnabled:Boolean = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         setHasOptionsMenu(true)
@@ -20,10 +19,10 @@ class PostsFragment : AppToolbarFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lists.setOnClickListener {
-            val action = PostsFragmentDirections.actionPostsFragmentToPostDetailFragment(1)
-            findNavController().navigate(action)
-        }
+        val a: Int = arguments?.let {
+            val postDetailArgs = PostDetailFragmentArgs.fromBundle(it)
+            postDetailArgs.postId
+        } ?: 0
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
