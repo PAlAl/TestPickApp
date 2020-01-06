@@ -7,5 +7,6 @@
     <string name="posts_menu_sort_by_date_title">по дате</string>
     <string name="posts_menu_sort_by_rank_title">по рейтингу</string>
     <string name="posts_menu_sort_clear_title">сбросить</string>
-
+    <string name="posts_menu_item_expand_title">Читать далее</string>
+    <string name="posts_menu_item_collapse_title">Свернуть</string>
 </resources>

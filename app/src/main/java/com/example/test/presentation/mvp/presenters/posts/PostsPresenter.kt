@@ -32,7 +32,10 @@ class PostsPresenter : BasePresenter<IPostsView>() {
                 }
                 .subscribeDispose({
                     postsModels.clear()
-                    postsModels.addAll(it.mapIndexed { index, post -> PostViewModel(post.id, post.date, post.title, post.previewText, post.likesCount, index) })
+                    postsModels.addAll(it.mapIndexed { index, post ->
+                        PostViewModel(post.id, post.date, post.date.toString(DateFormats.longDateTimeFormat),
+                                post.title, post.previewText, post.likesCount, index)
+                    })
                     render()
                 }, {
                     Log.e("Error", "in PostsPresenter at getPosts ${it.message}")
@@ -44,7 +47,7 @@ class PostsPresenter : BasePresenter<IPostsView>() {
     }
 
     fun onSortByRankClick() {
-        postsModels.sortBy { it.likesCount }
+        postsModels.sortByDescending { it.likesCount }
         render()
     }
 
@@ -58,7 +61,14 @@ class PostsPresenter : BasePresenter<IPostsView>() {
         render()
     }
 
-    val onItemClick: (postId: Int) -> Unit = {
+    val onItemClick: (Int) -> Unit = {
 
+    }
+
+    val onExpandCollapseItemClick: (Int) -> Unit = { postId ->
+        postsModels.firstOrNull { it.id == postId }?.let {
+            it.isExpandText = !it.isExpandText
+            render()
+        }
     }
 }

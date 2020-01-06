@@ -1,11 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_marginBottom="4dp">
 
-    <TextView
-        android:id="@+id/post_item_title"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_post_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorGreyText"
+                android:textSize="14sp"
+                tools:text="10.12.2019 15:30" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/item_post_likes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:textColor="@color/colorGreyText"
+                    android:textSize="14sp"
+                    tools:text="123" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_thumbs_up" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_post_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="20sp"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/item_post_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:maxLines="2"
+            android:textSize="14sp"
+            tools:text="Text" />
+
+        <LinearLayout
+            android:id="@+id/item_post_expand_collapse_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_post_expand_collapse_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:maxLines="2"
+                android:text="@string/posts_menu_item_expand_title"
+                android:textColor="@color/colorGreyText"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/item_post_expand_collapse_img"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="4dp"
+                android:src="@drawable/ic_expand"
+                android:tint="@color/colorGreyText" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

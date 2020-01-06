@@ -18,7 +18,7 @@ class PostsAdapter(var items: List<PostViewModel>, val presenter: PostsPresenter
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val viewHolder: PostsViewHolder = holder as PostsViewHolder
-        viewHolder.init(items[position], presenter.onItemClick)
+        viewHolder.init(items[position], presenter.onItemClick, presenter.onExpandCollapseItemClick)
     }
 
     override fun getItemCount() = items.size
