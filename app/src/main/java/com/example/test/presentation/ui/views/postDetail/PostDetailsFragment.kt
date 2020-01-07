@@ -1,8 +1,13 @@
 package com.example.test.presentation.ui.views.postDetail
 
+import android.os.Build
 import android.os.Bundle
-import android.view.*
-import android.widget.ImageView
+import android.text.Html
+import android.text.Spanned
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.test.R
 import com.example.test.presentation.mvp.global.ImageLoader
@@ -67,11 +72,20 @@ class PostDetailsFragment : AppToolbarFragment(), IPostDetailsView {
     private fun renderDetails(model: PostDetailsViewModel) {
         with(model) {
             post_details_title.text = title
-            post_details_text.text = text
+            post_details_text.text = preparePostText(text)
             post_details_date.text = dateString
             post_details_likes.text = likesCount.toString()
             renderImages(model.images)
         }
+    }
+
+    private fun preparePostText(text: String): Spanned {
+        val preparedText = text.replace("\n", "<br>")
+
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            Html.fromHtml(preparedText, Html.FROM_HTML_MODE_LEGACY)
+        else
+            Html.fromHtml(preparedText)
     }
 
     private fun renderImages(urls: List<String>) {

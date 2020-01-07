@@ -80,7 +80,8 @@
             android:id="@+id/item_post_expand_collapse_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <TextView
                 android:id="@+id/item_post_expand_collapse_title"
