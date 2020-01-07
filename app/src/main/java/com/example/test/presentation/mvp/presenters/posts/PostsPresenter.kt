@@ -38,6 +38,7 @@ class PostsPresenter : BasePresenter<IPostsView>() {
                     })
                     render()
                 }, {
+                    render()
                     Log.e("Error", "in PostsPresenter at getPosts ${it.message}")
                 })
     }
@@ -61,8 +62,10 @@ class PostsPresenter : BasePresenter<IPostsView>() {
         render()
     }
 
-    val onItemClick: (Int) -> Unit = {
-
+    val onItemClick: (Int) -> Unit = { postId ->
+        postsModels.firstOrNull { it.id == postId }?.let {
+            viewState.openPostDetail(it.id)
+        }
     }
 
     val onExpandCollapseItemClick: (Int) -> Unit = { postId ->

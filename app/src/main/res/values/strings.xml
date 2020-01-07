@@ -9,4 +9,6 @@
     <string name="posts_menu_sort_clear_title">сбросить</string>
     <string name="posts_menu_item_expand_title">Читать далее</string>
     <string name="posts_menu_item_collapse_title">Свернуть</string>
+
+    <string name="post_details_empty_title">Пост не найден</string>
 </resources>

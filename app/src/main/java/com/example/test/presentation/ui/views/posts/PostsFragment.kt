@@ -2,6 +2,7 @@ package com.example.test.presentation.ui.views.posts
 
 import android.os.Bundle
 import android.view.*
+import androidx.navigation.fragment.findNavController
 import com.example.test.R
 import com.example.test.presentation.mvp.presenters.posts.IPostsView
 import com.example.test.presentation.mvp.presenters.posts.PostsPresenter
@@ -88,5 +89,9 @@ class PostsFragment : AppToolbarFragment(), IPostsView {
             adapter.items = posts
             adapter.notifyDataSetChanged()
         }
+    }
+
+    override fun openPostDetail(postId: Int) {
+        findNavController().navigate(PostsFragmentDirections.actionPostsFragmentToPostDetailFragment(postId))
     }
 }
