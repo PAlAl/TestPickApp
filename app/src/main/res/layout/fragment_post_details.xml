@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whiteColor">
+    android:background="?attr/defaultBackgroundColor">
 
     <TextView
         android:id="@+id/post_details_empty_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@color/whiteColor"
+        android:background="?attr/defaultBackgroundColor"
         android:gravity="center"
         android:text="@string/post_details_empty_title"
         android:textSize="17sp"
@@ -52,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/colorGreyText"
+                        android:textColor="?attr/highlightTextColor"
                         android:textSize="14sp"
                         tools:text="10.12.2019 15:30" />
 
@@ -67,7 +67,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
-                        android:textColor="@color/colorGreyText"
+                        android:textColor="?attr/highlightTextColor"
                         android:textSize="14sp"
                         tools:text="123" />
 
@@ -83,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="4dp"
-                    android:background="@color/colorGreyDivider" />
+                    android:background="?attr/lineDividerColor" />
 
                 <TextView
                     android:id="@+id/post_details_title"

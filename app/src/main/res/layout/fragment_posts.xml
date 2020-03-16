@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGreyBackground"
+    android:background="?attr/darkBackgroundColor"
     android:orientation="vertical">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:background="@color/whiteColor"
+        android:background="?attr/defaultBackgroundColor"
         android:gravity="center"
         android:text="@string/posts_empty_title"
         android:textSize="17sp"

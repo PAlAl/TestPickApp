@@ -10,18 +10,25 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:textColor">@color/colorDefaultText</item>
-        <item name="android:itemBackground">@color/whiteColor</item>
+        <item name="android:itemBackground">@color/colorDefaultBackground</item>
+        <item name="highlightTextColor">@color/colorHighlightText</item>
+        <item name="darkBackgroundColor">@color/colorDarkBackground</item>
+        <item name="defaultBackgroundColor">@color/colorDefaultBackground</item>
+        <item name="lineDividerColor">@color/colorLineDivider</item>
+        <item name="collapseExpandColor">@color/colorCollapseExpand</item>
+        <item name="appBarShadowColor">@color/colorAppbarShadow</item>
+        <item name="mainToolbarPopupTheme">@style/MainToolbarPopupTheme</item>
     </style>
 
     <style name="MainToolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">?attr/colorPrimary</item>
     </style>
 
     <style name="MainToolbarPopupTheme">
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="colorControlNormal">?attr/colorPrimary</item>
     </style>
 </resources>

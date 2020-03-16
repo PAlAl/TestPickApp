@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="highlightTextColor" format="reference"/>
+    <attr name="darkBackgroundColor" format="reference"/>
+    <attr name="defaultBackgroundColor" format="reference"/>
+    <attr name="lineDividerColor" format="reference"/>
+    <attr name="collapseExpandColor" format="reference"/>
+    <attr name="appBarShadowColor" format="reference"/>
+
+    <attr name="mainToolbarPopupTheme" format="reference"/>
+</resources>

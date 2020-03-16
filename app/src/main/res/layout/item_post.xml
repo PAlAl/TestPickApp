@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textColor="@color/colorGreyText"
+                android:textColor="?attr/highlightTextColor"
                 android:textSize="14sp"
                 tools:text="10.12.2019 15:30" />
 
@@ -45,7 +45,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:gravity="center"
-                    android:textColor="@color/colorGreyText"
+                    android:textColor="?attr/highlightTextColor"
                     android:textSize="14sp"
                     tools:text="123" />
 
@@ -90,7 +90,7 @@
                 android:layout_gravity="center_vertical"
                 android:maxLines="2"
                 android:text="@string/posts_menu_item_expand_title"
-                android:textColor="@color/colorGreyText"
+                android:textColor="?attr/highlightTextColor"
                 android:textSize="14sp" />
 
             <ImageView
@@ -100,7 +100,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="4dp"
                 android:src="@drawable/ic_expand"
-                android:tint="@color/colorGreyText" />
+                android:tint="?attr/highlightTextColor" />
 
         </LinearLayout>
 
