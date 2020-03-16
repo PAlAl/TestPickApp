@@ -1,6 +1,19 @@
 package com.example.test.data.models.posts.response
 
+import com.google.gson.annotations.SerializedName
 import org.joda.time.DateTime
 
-class PostDetailsResponse(val postId: Int, val timeshamp: DateTime, val title: String?, val text: String?, val images: List<String>?, val likes_count: Int?) {
+class PostDetailsResponse(
+        @SerializedName("postId")
+        val postId: Int,
+        @SerializedName("timeshamp")
+        val timeshamp: DateTime,
+        @SerializedName("title")
+        val title: String?,
+        @SerializedName("text")
+        val text: String?,
+        @SerializedName("images")
+        val images: List<String>?,
+        @SerializedName("likes_count")
+        val likes_count: Int?) {
 }

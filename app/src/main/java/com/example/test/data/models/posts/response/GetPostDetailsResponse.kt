@@ -1,4 +1,6 @@
 package com.example.test.data.models.posts.response
 
-class GetPostDetailsResponse(val post: PostDetailsResponse?) {
+import com.google.gson.annotations.SerializedName
+
+class GetPostDetailsResponse(@SerializedName("post") val post: PostDetailsResponse?) {
 }
