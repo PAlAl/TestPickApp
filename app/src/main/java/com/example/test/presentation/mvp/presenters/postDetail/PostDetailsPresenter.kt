@@ -2,7 +2,7 @@ package com.example.test.presentation.mvp.presenters.postDetail
 
 import android.util.Log
 import com.example.test.TestPikabuApplication
-import com.example.test.domain.interactors.posts.PostsInteractor
+import com.example.test.domain.interactors.posts.IPostsInteractor
 import com.example.test.presentation.mvp.global.BasePresenter
 import com.example.test.presentation.mvp.global.DateFormats
 import com.example.test.presentation.ui.views.postDetail.models.PostDetailsViewModel
@@ -13,7 +13,7 @@ import javax.inject.Inject
 class PostDetailsPresenter : BasePresenter<IPostDetailsView>() {
 
     @Inject
-    lateinit var interactor: PostsInteractor
+    lateinit var interactor: IPostsInteractor
 
     init {
         TestPikabuApplication.instance.getAppComponent().inject(this)

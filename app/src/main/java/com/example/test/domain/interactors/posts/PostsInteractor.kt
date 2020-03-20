@@ -6,12 +6,12 @@ import com.example.test.domain.global.repositories.IPostsRepository
 import io.reactivex.Single
 import javax.inject.Inject
 
-class PostsInteractor @Inject constructor(private val repository: IPostsRepository) {
-    fun getPosts(): Single<List<Post>> {
+class PostsInteractor @Inject constructor(private val repository: IPostsRepository) : IPostsInteractor {
+    override fun getPosts(): Single<List<Post>> {
         return repository.getPosts()
     }
 
-    fun getPostDetails(postId: Int): Single<PostDetails> {
+    override fun getPostDetails(postId: Int): Single<PostDetails> {
         return repository.getPostDetails(postId)
     }
 }
