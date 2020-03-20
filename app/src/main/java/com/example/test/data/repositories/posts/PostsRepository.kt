@@ -17,7 +17,6 @@ class PostsRepository @Inject constructor(private val api: IApiService, private 
                     PostsMapper.fromResponse(it)
                 }
                 .subscribeOn(schedulers.io())
-                .observeOn(schedulers.ui())
     }
 
     override fun getPostDetails(postId: Int): Single<PostDetails> {
@@ -27,6 +26,5 @@ class PostsRepository @Inject constructor(private val api: IApiService, private 
                     postDetail ?: PostDetails.empty
                 }
                 .subscribeOn(schedulers.io())
-                .observeOn(schedulers.ui())
     }
 }

@@ -2,6 +2,7 @@ package com.example.test.presentation.mvp.presenters.posts
 
 import android.util.Log
 import com.example.test.TestPikabuApplication
+import com.example.test.domain.global.managers.ISchedulersManager
 import com.example.test.domain.interactors.posts.IPostsInteractor
 import com.example.test.presentation.mvp.global.BasePresenter
 import com.example.test.presentation.mvp.global.DateFormats
@@ -15,6 +16,9 @@ class PostsPresenter : BasePresenter<IPostsView>() {
     @Inject
     lateinit var interactor: IPostsInteractor
 
+    @Inject
+    lateinit var schedulers: ISchedulersManager
+
     private val postsModels: ArrayList<PostViewModel> = arrayListOf()
 
     init {
@@ -24,6 +28,7 @@ class PostsPresenter : BasePresenter<IPostsView>() {
 
     private fun loadPosts() {
         interactor.getPosts()
+                .observeOn(schedulers.ui())
                 .doOnSubscribe {
                     viewState.showBlockingProgress(true)
                 }
