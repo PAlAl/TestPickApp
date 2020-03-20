@@ -4,10 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test.R
-import com.example.test.presentation.mvp.presenters.posts.PostsPresenter
 import com.example.test.presentation.ui.views.posts.models.PostViewModel
 
-class PostsAdapter(var items: List<PostViewModel>, val presenter: PostsPresenter) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PostsAdapter(var items: List<PostViewModel>, private val onItemClick: (Int) -> Unit, private val onExpandCollapseClick: (Int) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -18,7 +17,7 @@ class PostsAdapter(var items: List<PostViewModel>, val presenter: PostsPresenter
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val viewHolder: PostsViewHolder = holder as PostsViewHolder
-        viewHolder.init(items[position], presenter.onItemClick, presenter.onExpandCollapseItemClick)
+        viewHolder.init(items[position], onItemClick, onExpandCollapseClick)
     }
 
     override fun getItemCount() = items.size

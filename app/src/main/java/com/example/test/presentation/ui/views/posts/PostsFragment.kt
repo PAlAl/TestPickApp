@@ -31,7 +31,7 @@ class PostsFragment : AppToolbarFragment(), IPostsView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = PostsAdapter(arrayListOf(), presenter)
+        adapter = PostsAdapter(arrayListOf(), presenter.onItemClick, presenter.onExpandCollapseItemClick)
         adapter.setHasStableIds(true)
         posts_recycler_view.adapter = adapter
         posts_recycler_view.clipToPadding = false
