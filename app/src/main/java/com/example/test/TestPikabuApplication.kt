@@ -2,9 +2,10 @@ package com.example.test
 
 import android.app.Application
 import com.example.test.di.AppComponent
+import com.example.test.di.ContextModule
 import com.example.test.di.DaggerAppComponent
 
-class TestPikabuApplication: Application() {
+class TestPikabuApplication : Application() {
 
     companion object {
         lateinit var instance: TestPikabuApplication
@@ -18,8 +19,7 @@ class TestPikabuApplication: Application() {
 
     fun getAppComponent(): AppComponent {
         if (appComponent == null) {
-            appComponent =
-                    DaggerAppComponent.builder().build()
+            appComponent = DaggerAppComponent.builder().contextModule(ContextModule(this)).build()
         }
 
         return appComponent as AppComponent

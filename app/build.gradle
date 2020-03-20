@@ -15,9 +15,11 @@ android {
     }
     buildTypes {
         debug {
+            buildConfigField "Boolean", "CHUCK_ENABLE", 'true'
             buildConfigField "String", "SERVER_URL", '"http://cs.pikabu.ru/"'
         }
         release {
+            buildConfigField "Boolean", "CHUCK_ENABLE", 'false'
             buildConfigField "String", "SERVER_URL", '"http://cs.pikabu.ru/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
