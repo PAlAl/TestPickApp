@@ -1,70 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="4dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:paddingLeft="16dp"
         android:paddingTop="8dp"
         android:paddingRight="16dp"
         android:paddingBottom="8dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/item_post_date"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:gravity="center_vertical"
+            android:textColor="?attr/highlightTextColor"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/item_post_top_barrier"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/item_post_likes"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="10.12.2019 15:30" />
 
-            <TextView
-                android:id="@+id/item_post_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textColor="?attr/highlightTextColor"
-                android:textSize="14sp"
-                tools:text="10.12.2019 15:30" />
+        <TextView
+            android:id="@+id/item_post_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:textColor="?attr/highlightTextColor"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/item_post_top_barrier"
+            app:layout_constraintRight_toLeftOf="@+id/item_post_likes_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="123" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/item_post_likes_image"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:padding="4dp"
+            android:src="@drawable/ic_thumbs_up"
+            app:layout_constraintBottom_toTopOf="@+id/item_post_top_barrier"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/item_post_likes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center"
-                    android:textColor="?attr/highlightTextColor"
-                    android:textSize="14sp"
-                    tools:text="123" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                    android:padding="4dp"
-                    android:src="@drawable/ic_thumbs_up" />
-            </LinearLayout>
-        </LinearLayout>
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/item_post_top_barrier"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="item_post_date, item_post_likes, item_post_likes_image" />
 
         <TextView
             android:id="@+id/item_post_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-medium"
             android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/item_post_top_barrier"
             tools:text="Title" />
 
         <TextView
@@ -74,35 +75,35 @@
             android:layout_marginTop="4dp"
             android:maxLines="2"
             android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/item_post_title"
             tools:text="Text" />
 
-        <LinearLayout
-            android:id="@+id/item_post_expand_collapse_container"
+        <TextView
+            android:id="@+id/item_post_expand_collapse_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp">
+            android:layout_gravity="center_vertical"
+            android:maxLines="2"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="8dp"
+            android:text="@string/posts_menu_item_expand_title"
+            android:textColor="?attr/highlightTextColor"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/item_post_text" />
 
-            <TextView
-                android:id="@+id/item_post_expand_collapse_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:maxLines="2"
-                android:text="@string/posts_menu_item_expand_title"
-                android:textColor="?attr/highlightTextColor"
-                android:textSize="14sp" />
+        <ImageView
+            android:id="@+id/item_post_expand_collapse_img"
+            android:layout_width="14dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_expand"
+            android:tint="?attr/highlightTextColor"
+            app:layout_constraintBottom_toBottomOf="@+id/item_post_expand_collapse_title"
+            app:layout_constraintLeft_toRightOf="@+id/item_post_expand_collapse_title"
+            app:layout_constraintTop_toBottomOf="@+id/item_post_text" />
 
-            <ImageView
-                android:id="@+id/item_post_expand_collapse_img"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="4dp"
-                android:src="@drawable/ic_expand"
-                android:tint="?attr/highlightTextColor" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
-
-    </LinearLayout>
 </androidx.cardview.widget.CardView>

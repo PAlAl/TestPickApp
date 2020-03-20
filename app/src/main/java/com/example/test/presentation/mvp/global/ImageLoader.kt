@@ -9,17 +9,19 @@ import com.example.test.R
 
 object ImageLoader {
 
-    private fun getImageRequestOptions(): RequestOptions {
+    private const val defaultRequestTimeout = 10000
+
+    private fun getImageRequestOptions(requestTimeOut: Int): RequestOptions {
         return RequestOptions()
-                .timeout(10000)
+                .timeout(requestTimeOut)
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.loading_error)
     }
 
-    fun simpleLoad(view: View, url: String, imageView: ImageView) {
+    fun simpleLoad(view: View, url: String, imageView: ImageView, requestTimeOut: Int = defaultRequestTimeout) {
         Glide
                 .with(view)
-                .setDefaultRequestOptions(getImageRequestOptions())
+                .setDefaultRequestOptions(getImageRequestOptions(requestTimeOut))
                 .load(Uri.parse(url))
                 .into(imageView)
     }

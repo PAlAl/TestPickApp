@@ -28,7 +28,8 @@ class PostsViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             }
 
             setOnClickListener { onItemClick(model.id) }
-            item_post_expand_collapse_container.setOnClickListener { onExpandCollapseClick(model.id) }
+            item_post_expand_collapse_title.setOnClickListener { onExpandCollapseClick(model.id) }
+            item_post_expand_collapse_img.setOnClickListener { onExpandCollapseClick(model.id) }
         }
     }
 }
