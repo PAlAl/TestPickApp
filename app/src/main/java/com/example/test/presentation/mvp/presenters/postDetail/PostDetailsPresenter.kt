@@ -7,6 +7,7 @@ import com.example.test.domain.interactors.posts.IPostsInteractor
 import com.example.test.presentation.mvp.global.BasePresenter
 import com.example.test.presentation.mvp.global.DateFormats
 import com.example.test.presentation.ui.views.postDetail.models.PostDetailsViewModel
+import com.example.test.presentation.ui.views.postDetail.models.PostDetailsViewModelMapper
 import moxy.InjectViewState
 import javax.inject.Inject
 
@@ -37,7 +38,7 @@ class PostDetailsPresenter : BasePresenter<IPostDetailsView>() {
                             if (it.isEmpty)
                                 null
                             else
-                                PostDetailsViewModel(it.id, it.date.toString(DateFormats.longDateTimeFormat), it.title, it.text, it.images, it.likesCount)
+                                PostDetailsViewModelMapper.toViewModel(it)
                     )
                 }, {
                     viewState.setData(null)

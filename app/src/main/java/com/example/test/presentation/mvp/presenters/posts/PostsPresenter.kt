@@ -7,6 +7,7 @@ import com.example.test.domain.interactors.posts.IPostsInteractor
 import com.example.test.presentation.mvp.global.BasePresenter
 import com.example.test.presentation.mvp.global.DateFormats
 import com.example.test.presentation.ui.views.posts.models.PostViewModel
+import com.example.test.presentation.ui.views.posts.models.PostViewModelMapper
 import moxy.InjectViewState
 import javax.inject.Inject
 
@@ -37,10 +38,7 @@ class PostsPresenter : BasePresenter<IPostsView>() {
                 }
                 .subscribeDispose({
                     postsModels.clear()
-                    postsModels.addAll(it.mapIndexed { index, post ->
-                        PostViewModel(post.id, post.date, post.date.toString(DateFormats.longDateTimeFormat),
-                                post.title, post.previewText, post.likesCount, index)
-                    })
+                    postsModels.addAll(it.mapIndexed { index, post -> PostViewModelMapper.toViewModel(post, index) })
                     render()
                 }, {
                     render()
