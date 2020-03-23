@@ -87,8 +87,7 @@ class PostsFragment : AppToolbarFragment(), IPostsView {
         } else {
             posts_empty_title.visibility = View.GONE
             posts_recycler_view.visibility = View.VISIBLE
-            adapter.items = posts
-            adapter.notifyDataSetChanged()
+            adapter.updateData(posts)
         }
     }
 
