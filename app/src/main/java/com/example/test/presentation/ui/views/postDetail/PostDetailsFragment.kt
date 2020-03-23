@@ -45,6 +45,7 @@ class PostDetailsFragment : AppToolbarFragment(), IPostDetailsView {
         imageAdapter.setHasStableIds(true)
         post_details_images_recyclerview.adapter = imageAdapter
         post_details_images_recyclerview.clipToPadding = false
+        post_details_images_recyclerview.setHasFixedSize(true)
 
         presenter.onViewCreated(postId)
     }
@@ -82,8 +83,7 @@ class PostDetailsFragment : AppToolbarFragment(), IPostDetailsView {
             post_details_date.text = dateString
             post_details_likes.text = likesCount.toString()
 
-            imageAdapter.items = model.images
-            imageAdapter.notifyDataSetChanged()
+            imageAdapter.updateData(model.images)
         }
     }
 
