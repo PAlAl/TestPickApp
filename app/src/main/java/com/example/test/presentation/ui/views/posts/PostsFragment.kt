@@ -35,6 +35,7 @@ class PostsFragment : AppToolbarFragment(), IPostsView {
         adapter.setHasStableIds(true)
         posts_recycler_view.adapter = adapter
         posts_recycler_view.clipToPadding = false
+        posts_recycler_view.setHasFixedSize(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

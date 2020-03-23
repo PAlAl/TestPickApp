@@ -25,8 +25,4 @@ class PostsAdapter(var items: List<PostViewModel>, private val onItemClick: (Int
     override fun getItemId(position: Int): Long {
         return items[position].id.toLong()
     }
-
-    override fun getItemViewType(position: Int): Int {
-        return position
-    }
 }

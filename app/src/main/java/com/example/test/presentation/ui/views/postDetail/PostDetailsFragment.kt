@@ -10,13 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.test.R
-import com.example.test.presentation.mvp.global.ImageLoader
 import com.example.test.presentation.mvp.presenters.postDetail.IPostDetailsView
 import com.example.test.presentation.mvp.presenters.postDetail.PostDetailsPresenter
 import com.example.test.presentation.ui.views.global.AppToolbarFragment
+import com.example.test.presentation.ui.views.postDetail.adapters.PostsDetailsImageAdapter
 import com.example.test.presentation.ui.views.postDetail.models.PostDetailsViewModel
 import kotlinx.android.synthetic.main.fragment_post_details.*
-import kotlinx.android.synthetic.main.item_post_details_image.view.*
 import moxy.presenter.InjectPresenter
 
 class PostDetailsFragment : AppToolbarFragment(), IPostDetailsView {
@@ -26,6 +25,8 @@ class PostDetailsFragment : AppToolbarFragment(), IPostDetailsView {
 
     @InjectPresenter
     lateinit var presenter: PostDetailsPresenter
+
+    private lateinit var imageAdapter: PostsDetailsImageAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         setHasOptionsMenu(true)
@@ -39,6 +40,11 @@ class PostDetailsFragment : AppToolbarFragment(), IPostDetailsView {
         val postId: Int = arguments?.let {
             PostDetailsFragmentArgs.fromBundle(it).postId
         } ?: 0
+
+        imageAdapter = PostsDetailsImageAdapter(arrayListOf())
+        imageAdapter.setHasStableIds(true)
+        post_details_images_recyclerview.adapter = imageAdapter
+        post_details_images_recyclerview.clipToPadding = false
 
         presenter.onViewCreated(postId)
     }
@@ -75,7 +81,9 @@ class PostDetailsFragment : AppToolbarFragment(), IPostDetailsView {
             post_details_text.text = preparePostText(text)
             post_details_date.text = dateString
             post_details_likes.text = likesCount.toString()
-            renderImages(model.images)
+
+            imageAdapter.items = model.images
+            imageAdapter.notifyDataSetChanged()
         }
     }
 
@@ -86,18 +94,5 @@ class PostDetailsFragment : AppToolbarFragment(), IPostDetailsView {
             Html.fromHtml(preparedText, Html.FROM_HTML_MODE_LEGACY)
         else
             Html.fromHtml(preparedText)
-    }
-
-    private fun renderImages(urls: List<String>) {
-        with(post_details_images_container) {
-            removeAllViews()
-            visibility = if (urls.isEmpty()) View.GONE else View.VISIBLE
-
-            urls.forEach {
-                val view = layoutInflater.inflate(R.layout.item_post_details_image, this, false)
-                addView(view)
-                ImageLoader.simpleLoad(this, it, view.post_details_image)
-            }
-        }
     }
 }
